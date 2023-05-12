@@ -9,4 +9,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
 	
 	@Query(value="select e.number,e.first_name,e.last_name,e.email,e.address_id,e.salary from emp e where e.number=:id and e.first_name=:name",nativeQuery = true)
 	public Optional<Employee> findByIdAndName(int id,String name);
+
+	@Query(value="select e.number,e.first_name,e.last_name,e.email,e.address_id,e.salary from emp e where e.first_name=:name",nativeQuery = true)
+	public Optional<Employee>  findByFirstName(String name);
 }

@@ -58,6 +58,10 @@ public class EmployeeController {
 	{
 		return empservice.findByIdAndName(id, name);
 	}
-	
-	
+	//Find by Name
+	@GetMapping("getInfoByName/{name}")
+	public Employee findName(@PathVariable String name)
+	{
+		return empservice.findByName(name);
+	}
 }
