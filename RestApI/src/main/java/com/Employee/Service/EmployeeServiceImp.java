@@ -84,5 +84,23 @@ public class EmployeeServiceImp implements EmployeeService
 	 public Employee create(Employee emp) {
 		 return repository.save(emp);
 	 }
+
+
+	 @Override
+	public  Employee findByName(String name)
+	 {
+		 Employee empbyname=null;
+		 Optional<Employee> optional=repository.findByFirstName(name);
+				 if(optional.isPresent())
+				 {
+					 empbyname=optional.get();
+				 }
+				 else
+				 {
+					 throw  new RuntimeException("Invalid User......!!");
+				 }
+				 return  empbyname;
+
+	 }
 	
 }
