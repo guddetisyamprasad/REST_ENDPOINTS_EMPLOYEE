@@ -1,5 +1,6 @@
 package com.Employee.Controller;
 
+import com.Employee.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,10 @@ import net.bytebuddy.matcher.ModifierMatcher.Mode;
 
 public class EmployeeController {
 	@Autowired
-	 private EmployeeService empservice; 
+	 private EmployeeService empservice;
+
+	@Autowired
+	private EmployeeRepository employeeRepository;
 	@GetMapping("/GetAll")
 	public List<Employee> allemp()
 	{
@@ -59,9 +63,17 @@ public class EmployeeController {
 		return empservice.findByIdAndName(id, name);
 	}
 	//Find by Name
+    //PR https://github.com/guddetisyamprasad/REST_ENDPOINTS_EMPLOYEE/pull/1
 	@GetMapping("getInfoByName/{name}")
 	public Employee findName(@PathVariable String name)
 	{
 		return empservice.findByName(name);
 	}
+
+	@GetMapping("/getName")
+    public List<Object> getName()
+    {
+	 List<Object> getempnames=employeeRepository.getByName();
+	 return getempnames;
+    }
 }
